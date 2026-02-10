@@ -1,10 +1,8 @@
 // src/Creator.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCard } from './cardService'; // Import our helper
+import { createCard } from './cardService';
 
-// Define your available flowers here
-// make sure the 'image' path matches your filenames in /public/flowers/
 const FLOWER_TYPES = [
   { id: 'rose', name: 'Red Rose', image: '/flowers/rose.png' },
   { id: 'tulip', name: 'Tulip', image: '/flowers/tulip.png' },
@@ -20,17 +18,14 @@ const Creator = () => {
   const [recipient, setRecipient] = useState('');
   const [message, setMessage] = useState('');
 
-  // State for the bouquet (using a simple object to track counts)
-  // Example: { rose: 2, tulip: 1 }
   const [bouquet, setBouquet] = useState({});
   
   const [loading, setLoading] = useState(false);
 
-  // Helper to change flower counts
   const updateFlower = (flowerId, change) => {
     setBouquet(prev => {
       const currentCount = prev[flowerId] || 0;
-      const newCount = Math.max(0, currentCount + change); // Prevent negative numbers
+      const newCount = Math.max(0, currentCount + change); // no negatives
       return { ...prev, [flowerId]: newCount };
     });
   };
@@ -40,11 +35,8 @@ const Creator = () => {
       alert("Please fill in all the text fields!");
       return;
     }
-    
-    // Transform our simple bouquet object into a list for saving
-    // From { rose: 2 } to [{ type: 'rose', count: 2 }]
     const bouquetArray = Object.entries(bouquet)
-      .filter(([_, count]) => count > 0) // Remove flowers with 0 count
+      .filter(([_, count]) => count > 0)
       .map(([id, count]) => ({ type: id, count }));
 
     if (bouquetArray.length === 0) {
@@ -58,7 +50,6 @@ const Creator = () => {
     setLoading(false);
 
     if (cardId) {
-      // If successful, go to the card page!
       navigate(`/card/${cardId}`);
     } else {
       alert("Something went wrong saving your card.");
@@ -69,7 +60,6 @@ const Creator = () => {
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       <h1>Make ur Vals Card</h1>
       
-      {/* 1. Text Inputs */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
         <input 
           placeholder="To (Recipient Name)" 
@@ -91,7 +81,6 @@ const Creator = () => {
         />
       </div>
 
-      {/* 2. Flower Picker */}
       <h3>Pick ur Flowers</h3>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '15px' }}>
         {FLOWER_TYPES.map(flower => (
@@ -108,7 +97,6 @@ const Creator = () => {
         ))}
       </div>
 
-      {/* 3. Generate Button */}
       <button 
         onClick={handleGenerate} 
         disabled={loading}
