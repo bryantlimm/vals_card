@@ -20,7 +20,7 @@ const CardViewer = () => {
           for (let i = 0; i < item.count; i++) {
             generatedFlowers.push({
               type: item.type,
-              rotation: Math.floor(Math.random() * 90) - 45,
+              rotation: Math.floor(Math.random() * 90) - 30,
               scale: 0.8 + Math.random() * 0.3,
               heightOffset: Math.floor(Math.random() * 20),
               xOffset: Math.floor(Math.random() * 20) - 10,
@@ -83,8 +83,8 @@ const CardViewer = () => {
             style={{
               position: 'absolute',
               left: '50%',
-              bottom: '45%', 
-              width: '80px', 
+              bottom: '40%', 
+              width: '95px', 
               
               transformOrigin: 'bottom center',
               
