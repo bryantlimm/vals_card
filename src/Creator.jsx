@@ -67,7 +67,7 @@ const Creator = () => {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h1>💌 Build Your Valentine</h1>
+      <h1>Make ur Vals Card</h1>
       
       {/* 1. Text Inputs */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
@@ -92,7 +92,7 @@ const Creator = () => {
       </div>
 
       {/* 2. Flower Picker */}
-      <h3>💐 Pick Your Flowers</h3>
+      <h3>Pick ur Flowers</h3>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '15px' }}>
         {FLOWER_TYPES.map(flower => (
           <div key={flower.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
@@ -124,7 +124,7 @@ const Creator = () => {
           cursor: 'pointer' 
         }}
       >
-        {loading ? "Creating Magic..." : "Generate Valentine Link 💘"}
+        {loading ? "Creating Magic..." : "Generate Link"}
       </button>
     </div>
   );
